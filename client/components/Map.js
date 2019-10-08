@@ -15,7 +15,7 @@ export default class Map extends Component {
         height: '800',
         latitude: 40.8510998,
         longitude: -74.0873832,
-        zoom: 12,
+        zoom: 11,
       },
       storeLocation: [-74.085076, 40.850979], // [long, lat]
       currentSearch: null,
@@ -57,7 +57,7 @@ export default class Map extends Component {
   isInDeliveryZone(currentSearchCoordinates) {
     // same as green area on map
     // coordinate data comes from studio.mapbox.com account
-    const deliveryZonePolygon = polygon([
+    const deliveryZoneOuter = polygon([
       [
         [-74.16237200261365, 40.89342416767394],
         [-74.18537281000276, 40.85374706633121],
@@ -72,9 +72,39 @@ export default class Map extends Component {
       ],
     ]);
 
+    const deliveryZoneInner = polygon([
+      [
+        [-74.087712, 40.903354],
+        [-74.121511, 40.901139],
+        [-74.146308, 40.876564],
+        [-74.155649, 40.853173],
+        [-74.136698, 40.823936],
+        [-74.066373, 40.817793],
+        [-74.042281, 40.837057],
+        [-74.02902, 40.866035],
+        [-74.041298, 40.893515],
+        [-74.087712, 40.903354],
+      ],
+    ]);
+
     const clientLocation = point(currentSearchCoordinates);
-    const locationInDeliveryZone = pointsWithinPolygon(clientLocation, deliveryZonePolygon);
-    return locationInDeliveryZone.features.length;
+    const inOuterDeliveryZone = pointsWithinPolygon(clientLocation, deliveryZoneOuter).features
+      .length;
+    const inInnerDeliveryZone = pointsWithinPolygon(clientLocation, deliveryZoneInner).features
+      .length;
+
+    if (inOuterDeliveryZone && inInnerDeliveryZone) {
+      // in inner delivery zone
+      console.log('inner & outer 3: ', inOuterDeliveryZone, inInnerDeliveryZone);
+      return 3;
+    }
+    // in outer delivery zone
+    if (inOuterDeliveryZone) {
+      console.log('inner & outer 5: ', inOuterDeliveryZone, inInnerDeliveryZone);
+      return 5;
+    }
+    // do not deliver
+    return 0;
   }
 
   render() {
@@ -95,7 +125,9 @@ export default class Map extends Component {
                     <li key={search.id} className="list-group-item">
                       <span className="search-idx">{idx + 1} :</span>
                       {search.place_name}
-                      {this.isInDeliveryZone(search.center) ? ' [we deliver] ' : ''}
+                      {this.isInDeliveryZone(search.center)
+                        ? this.isInDeliveryZone(search.center)
+                        : 0}
                       <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
                     </li>
                   );
