@@ -37,6 +37,7 @@ export default class Map extends Component {
       () => console.log('onSelect: ', this.state),
     );
 
+    // save searches in cookie
     if (searches.length) {
       Cookies.set('searches', searches);
     }
@@ -158,7 +159,7 @@ export default class Map extends Component {
             {searches &&
               searches.map((search, idx) => {
                 return (
-                  <Marker key={idx} longitude={search.center[0]} latitude={search.center[1]}>
+                  <Marker key={search.id} longitude={search.center[0]} latitude={search.center[1]}>
                     <button type="button" className="btn-pin">
                       {idx + 1}
                     </button>

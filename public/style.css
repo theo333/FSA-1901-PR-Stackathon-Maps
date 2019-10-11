@@ -1,3 +1,12 @@
+#page-header {
+  height: 4rem;
+  /* margin: 1rem 2rem; */
+  width: 80%;
+}
+
+#sample-addresses {
+}
+
 .enter-info {
   background-color: burlywood;
 }
@@ -21,4 +30,12 @@
   margin-right: 0.3rem;
   font-size: 1.3rem;
   font-weight: 600;
+}
+
+/******* Search Address Input **********/
+#react-geo-list {
+  background-color: antiquewhite;
+}
+.overlays input {
+  width: 300px;
 }
