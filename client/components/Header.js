@@ -2,20 +2,20 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div id="page-header" className="d-flex flex-row mr-auto justify-content-center">
+    <div id="page-header" className="d-flex flex-row mt-3 mb-3 justify-content-center">
       <h1>Do U Deliver</h1>
       <div className="d-flex flex-row">
         <div className="ml-4">
           In Delivery Zone 1 <br />
-          address1
+          17 Hamilton Avenue, Clifton, New Jersey 07011
         </div>
         <div className="ml-4">
-          In Delivery Zone 1 <br />
-          address1
+          In Delivery Zone 2 <br />
+          900 Allwood Road, Clifton, New Jersey 07012
         </div>
         <div className="ml-4">
-          In Delivery Zone 1 <br />
-          address1
+          Do Not Deliver <br />
+          35 Pearl Street, Paterson, New Jersey 07501
         </div>
       </div>
     </div>
@@ -23,3 +23,7 @@ const Header = () => {
 };
 
 export default Header;
+
+// 5: 900 Allwood Road, Clifton, New Jersey 07012
+// 3: 17 Hamilton Avenue, Clifton, New Jersey 07011
+// 0: 35 Pearl Street, Paterson, New Jersey 07501

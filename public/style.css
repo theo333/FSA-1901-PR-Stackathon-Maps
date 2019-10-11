@@ -1,11 +1,11 @@
 #page-header {
   height: 4rem;
   /* margin: 1rem 2rem; */
-  width: 80%;
+  width: 100%;
 }
 
-#sample-addresses {
-}
+/* #sample-addresses {
+} */
 
 .enter-info {
   background-color: burlywood;
