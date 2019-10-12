@@ -114,31 +114,37 @@ export default class Map extends Component {
 
     return (
       <div className="row">
-        <div className="col-md-4 enter-info">
-          <h2 className="text-center">Searches</h2>
-          <ul className="list-group">
-            {/* eslint-disable */}
-            {searches
-              ? searches.map((search, idx) => {
-                  {
-                    console.log('search', search);
-                  }
-                  return (
-                    <li key={search.id} className="list-group-item">
-                      <span className="search-idx">{idx + 1} :</span>
-                      {search.place_name}
-                      {this.isInDeliveryZone(search.center)
-                        ? this.isInDeliveryZone(search.center)
-                        : 0}
-                      <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
-                    </li>
-                  );
-                })
-              : ''}
-            {/* eslint-enable */}
-          </ul>
-        </div>
-        <div className="col-md-8">
+        <section id="info-section" className="col-md-4">
+          <article>
+            <h2 className="text-center">Instructions</h2>
+            <p>test</p>
+          </article>
+          <article>
+            <h2 className="text-center">Searches</h2>
+            <ul className="list-group">
+              {/* eslint-disable */}
+              {searches
+                ? searches.map((search, idx) => {
+                    {
+                      console.log('search', search);
+                    }
+                    return (
+                      <li key={search.id} className="list-group-item">
+                        <span className="search-idx">{idx + 1} :</span>
+                        {search.place_name}
+                        {this.isInDeliveryZone(search.center)
+                          ? this.isInDeliveryZone(search.center)
+                          : 0}
+                        <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
+                      </li>
+                    );
+                  })
+                : ''}
+              {/* eslint-enable */}
+            </ul>
+          </article>
+        </section>
+        <section id="map-section" className="col-md-8">
           <ReactMapGL
             {...this.state.viewport}
             onViewportChange={viewport => this.setState({ viewport })}
@@ -169,7 +175,7 @@ export default class Map extends Component {
                 );
               })}
           </ReactMapGL>
-        </div>
+        </section>
       </div>
     );
   }

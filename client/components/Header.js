@@ -2,7 +2,7 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <div id="page-header" className="d-flex flex-row mt-3 mb-3 justify-content-center">
+    <header id="page-header" className="d-flex flex-row mt-3 mb-2 justify-content-center">
       <h1>Do U Deliver</h1>
       <div className="d-flex flex-row">
         <div className="ml-4">
@@ -18,7 +18,7 @@ const Header = () => {
           35 Pearl Street, Paterson, New Jersey 07501
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

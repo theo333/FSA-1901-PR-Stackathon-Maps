@@ -7,8 +7,16 @@
 /* #sample-addresses {
 } */
 
-.enter-info {
+#info-section {
   background-color: burlywood;
+}
+
+#info-section article {
+  padding-left: 15px;
+}
+
+#map-section {
+  margin-left: -15px;
 }
 
 .fa-heart {
@@ -32,10 +40,12 @@
   font-weight: 600;
 }
 
-/******* Search Address Input **********/
+/******* Search Address Input *******/
 #react-geo-list {
   background-color: antiquewhite;
 }
 .overlays input {
   width: 300px;
+  line-height: 30px;
+  border-color: #a4a4a4;
 }
