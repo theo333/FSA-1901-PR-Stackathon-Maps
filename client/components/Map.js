@@ -57,7 +57,6 @@ export default class Map extends Component {
   }
 
   isInDeliveryZone(currentSearchCoordinates) {
-    // same as green area on map
     // coordinate data comes from studio.mapbox.com account
     const deliveryZoneOuter = polygon([
       [
@@ -95,8 +94,8 @@ export default class Map extends Component {
     const inInnerDeliveryZone = pointsWithinPolygon(clientLocation, deliveryZoneInner).features
       .length;
 
+    // in inner delivery zone
     if (inOuterDeliveryZone && inInnerDeliveryZone) {
-      // in inner delivery zone
       console.log('inner & outer 3: ', inOuterDeliveryZone, inInnerDeliveryZone);
       return 3;
     }
@@ -105,7 +104,7 @@ export default class Map extends Component {
       console.log('inner & outer 5: ', inOuterDeliveryZone, inInnerDeliveryZone);
       return 5;
     }
-    // do not deliver
+    // outside of deliver zone
     return 0;
   }
 
@@ -167,7 +166,7 @@ export default class Map extends Component {
               searches.map((search, idx) => {
                 return (
                   <Marker key={search.id} longitude={search.center[0]} latitude={search.center[1]}>
-                    <button type="button" className="btn-pin">
+                    <button type="button" className="btn-pin" title={search.place_name}>
                       {idx + 1}
                     </button>
                     <i className="fas fa-map-pin" />
