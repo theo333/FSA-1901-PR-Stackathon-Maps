@@ -127,20 +127,20 @@ export default class Map extends Component {
               {/* eslint-disable */}
               {searches
                 ? searches.map((search, idx) => {
-                    {
-                      console.log('search', search);
-                    }
-                    return (
-                      <li key={search.id} className="list-group-item">
-                        <span className="search-idx">{idx + 1} :</span>
-                        {search.place_name}
-                        {this.isInDeliveryZone(search.center)
-                          ? this.isInDeliveryZone(search.center)
-                          : 0}
-                        <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
-                      </li>
-                    );
-                  })
+                  {
+                    console.log('search', search);
+                  }
+                  return (
+                    <li key={search.id} className="list-group-item">
+                      <span className="search-idx">{idx + 1} :</span>
+                      {search.place_name}
+                      {this.isInDeliveryZone(search.center)
+                        ? this.isInDeliveryZone(search.center)
+                        : 0}
+                      <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
+                    </li>
+                  );
+                })
                 : ''}
               {/* eslint-enable */}
             </ul>
