@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/app.js', (req, res, next) => res.sendFile(path.join(__dirname, '../public', 'main.js')));
 
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, '../public', 'index.html')));
-// another way to serve TOKEN from server to client (Jason suggested) 
+// another way to serve TOKEN from server to client (Jason suggested)
 // output same content as index.html
 // also process browser.js and inject <script> with token attached to window object (window.TOKEN)
 
