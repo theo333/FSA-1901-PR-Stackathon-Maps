@@ -3,15 +3,10 @@ import ReactMapGL, { Marker, Layer, Feature } from 'react-map-gl';
 import Geocoder from 'react-geocoder-autocomplete';
 import Cookies from 'js-cookie';
 import { polygon, point, pointsWithinPolygon } from '@turf/turf';
-import TOKEN from '../../vars';
+// import TOKEN from '../../vars';  // for local development only
 
-const currentUrl = window.location.hostname;
-
-// sets TOKEN depending on hosting environment
-if (currentUrl !== 'localhost') {
-  TOKEN =
-    'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
-}
+const TOKEN =
+  'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
 
 export default class Map extends Component {
   constructor() {
