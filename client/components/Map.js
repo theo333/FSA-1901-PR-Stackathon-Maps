@@ -3,8 +3,14 @@ import ReactMapGL, { Marker, Layer, Feature } from 'react-map-gl';
 import Geocoder from 'react-geocoder-autocomplete';
 import Cookies from 'js-cookie';
 import { polygon, point, pointsWithinPolygon } from '@turf/turf';
-
 import TOKEN from '../../vars';
+
+const currentUrl = window.location.hostname;
+
+// sets TOKEN depending on hosting environment
+if (currentUrl !== 'localhost') {
+  TOKEN = 'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
+}
 
 export default class Map extends Component {
   constructor() {
@@ -20,6 +26,7 @@ export default class Map extends Component {
       storeLocation: [-74.085076, 40.850979], // [long, lat]
       currentSearch: null,
       searches: Cookies.getJSON('searches') || [],
+      TOKEN: TOKEN,
     };
 
     this.onSelect = this.onSelect.bind(this);
@@ -96,12 +103,12 @@ export default class Map extends Component {
 
     // in inner delivery zone
     if (inOuterDeliveryZone && inInnerDeliveryZone) {
-      console.log('inner & outer 3: ', inOuterDeliveryZone, inInnerDeliveryZone);
+      // console.log('inner & outer 3: ', inOuterDeliveryZone, inInnerDeliveryZone);
       return 3;
     }
     // in outer delivery zone
     if (inOuterDeliveryZone) {
-      console.log('inner & outer 5: ', inOuterDeliveryZone, inInnerDeliveryZone);
+      // console.log('inner & outer 5: ', inOuterDeliveryZone, inInnerDeliveryZone);
       return 5;
     }
     // outside of deliver zone
@@ -109,7 +116,7 @@ export default class Map extends Component {
   }
 
   render() {
-    const { storeLocation, searches } = this.state;
+    const { storeLocation, searches, TOKEN } = this.state;
 
     return (
       <div className="row">
@@ -124,20 +131,20 @@ export default class Map extends Component {
               {/* eslint-disable */}
               {searches
                 ? searches.map((search, idx) => {
-                    {
-                      console.log('search', search);
-                    }
-                    return (
-                      <li key={search.id} className="list-group-item">
-                        <span className="search-idx">{idx + 1} :</span>
-                        {search.place_name}
-                        {this.isInDeliveryZone(search.center)
-                          ? this.isInDeliveryZone(search.center)
-                          : 0}
-                        <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
-                      </li>
-                    );
-                  })
+                  {
+                    console.log('search', search);
+                  }
+                  return (
+                    <li key={search.id} className="list-group-item">
+                      <span className="search-idx">{idx + 1} :</span>
+                      {search.place_name}
+                      {this.isInDeliveryZone(search.center)
+                        ? this.isInDeliveryZone(search.center)
+                        : 0}
+                      <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
+                    </li>
+                  );
+                })
                 : ''}
               {/* eslint-enable */}
             </ul>
