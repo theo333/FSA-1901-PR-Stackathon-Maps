@@ -5,16 +5,16 @@ import Cookies from 'js-cookie';
 import { polygon, point, pointsWithinPolygon } from '@turf/turf';
 
 // grab correct TOKEN based on environment
-let TOKEN;
-const currentUrl = window.location.hostname;
-if (currentUrl === 'localhost') {
-  // require('../../.env');
-  // eslint-disable-next-line no-undef
-  // TOKEN = REACT_MAP_MAPBOX_TOKEN; // from .env file
-} else {
-  TOKEN =
-    'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
-}
+// let TOKEN;
+// const currentUrl = window.location.hostname;
+// if (currentUrl === 'localhost') {
+// require('../../.env');
+// eslint-disable-next-line no-undef
+// TOKEN = REACT_MAP_MAPBOX_TOKEN; // from .env file
+// } else {
+const TOKEN =
+  'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
+// }
 
 export default class Map extends Component {
   constructor() {
