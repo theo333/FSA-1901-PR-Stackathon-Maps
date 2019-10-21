@@ -8,9 +8,9 @@ import { polygon, point, pointsWithinPolygon } from '@turf/turf';
 let TOKEN;
 const currentUrl = window.location.hostname;
 if (currentUrl === 'localhost') {
-  require('../../.env');
+  // require('../../.env');
   // eslint-disable-next-line no-undef
-  TOKEN = REACT_MAP_MAPBOX_TOKEN; // from .env file
+  // TOKEN = REACT_MAP_MAPBOX_TOKEN; // from .env file
 } else {
   TOKEN =
     'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
