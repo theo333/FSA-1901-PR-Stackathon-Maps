@@ -38,6 +38,11 @@ export default class Map extends Component {
     this.deleteSearchItem = this.deleteSearchItem.bind(this);
   }
 
+  // componentDidMount() {
+  //   const cookies = Cookies.getJSON('searches');
+  //   console.log('cookie ', cookies)
+  // }
+
   onSelect(currentSearch) {
     console.log('currentSearch: ', currentSearch);
     const { searches } = this.state;
@@ -46,13 +51,12 @@ export default class Map extends Component {
         currentSearch,
         searches: [...searches, currentSearch],
       },
-      () => console.log('onSelect: ', this.state),
+      () => {
+        Cookies.set('searches', this.state.searches);
+        console.log('searches after select new one: ', this.state.searches);
+        console.log('state after select new one: ', this.state);
+      },
     );
-
-    // save searches in cookie
-    if (searches.length) {
-      Cookies.set('searches', searches);
-    }
   }
 
   onInputChange(value) {
@@ -62,9 +66,15 @@ export default class Map extends Component {
   deleteSearchItem(itemId) {
     // eslint-disable-next-line react/no-access-state-in-setstate
     const newSearches = this.state.searches.filter(search => search.id !== itemId);
-    this.setState({
-      searches: newSearches,
-    });
+    this.setState(
+      {
+        searches: newSearches,
+      },
+      () => {
+        Cookies.set('searches', this.state.searches);
+        console.log('search list after delete: ', this.state.searches);
+      },
+    );
   }
 
   isInDeliveryZone(currentSearchCoordinates) {
