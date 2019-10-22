@@ -29,11 +29,6 @@ export default class Map extends Component {
     this.deleteSearchItem = this.deleteSearchItem.bind(this);
   }
 
-  // componentDidMount() {
-  //   const cookies = Cookies.getJSON('searches');
-  //   console.log('cookie ', cookies)
-  // }
-
   onSelect(currentSearch) {
     console.log('currentSearch: ', currentSearch);
     const { searches } = this.state;
@@ -108,12 +103,10 @@ export default class Map extends Component {
 
     // in inner delivery zone
     if (inOuterDeliveryZone && inInnerDeliveryZone) {
-      // console.log('inner & outer 3: ', inOuterDeliveryZone, inInnerDeliveryZone);
       return 3;
     }
     // in outer delivery zone
     if (inOuterDeliveryZone) {
-      // console.log('inner & outer 5: ', inOuterDeliveryZone, inInnerDeliveryZone);
       return 5;
     }
     // outside of deliver zone
