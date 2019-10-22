@@ -4,17 +4,8 @@ import Geocoder from 'react-geocoder-autocomplete';
 import Cookies from 'js-cookie';
 import { polygon, point, pointsWithinPolygon } from '@turf/turf';
 
-// grab correct TOKEN based on environment
-// let TOKEN;
-// const currentUrl = window.location.hostname;
-// if (currentUrl === 'localhost') {
-// require('../../.env');
-// eslint-disable-next-line no-undef
-// TOKEN = REACT_MAP_MAPBOX_TOKEN; // from .env file
-// } else {
 const TOKEN =
-  'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazF6ZW5ubjUweGVxM25tdDU3a2xubjJkIn0.QeYBah0DYYxVt39o9-fLRA';
-// }
+  'pk.eyJ1IjoidGhlbzMzMyIsImEiOiJjazIxemM0YWoxcDgxM21waXNpcHZwdTRhIn0.tKoVFIxyUkxchHPJIFM5hw';
 
 export default class Map extends Component {
   constructor() {
@@ -145,20 +136,20 @@ export default class Map extends Component {
               {/* eslint-disable */}
               {searches
                 ? searches.map((search, idx) => {
-                    {
-                      console.log('search', search);
-                    }
-                    return (
-                      <li key={search.id} className="list-group-item">
-                        <span className="search-idx">{idx + 1} :</span>
-                        {search.place_name}
-                        {this.isInDeliveryZone(search.center)
-                          ? this.isInDeliveryZone(search.center)
-                          : 0}
-                        <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
-                      </li>
-                    );
-                  })
+                  {
+                    console.log('search', search);
+                  }
+                  return (
+                    <li key={search.id} className="list-group-item">
+                      <span className="search-idx">{idx + 1} :</span>
+                      {search.place_name}
+                      {this.isInDeliveryZone(search.center)
+                        ? this.isInDeliveryZone(search.center)
+                        : 0}
+                      <button onClick={() => this.deleteSearchItem(search.id)}>X</button>
+                    </li>
+                  );
+                })
                 : ''}
               {/* eslint-enable */}
             </ul>
